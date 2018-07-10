@@ -45,24 +45,6 @@ data class Line(val origin: Point, val end: Point): Pointy {
             else -> calculateHorizontalLinePoints()
         }
 
-    /**
-     * True if two lines share the same origin and end, or if one line's origin is the other's end, and vice versa.
-     * So a line (1, 1)-(1, 10) matches another line (1, 1)-(1, 10) as well as a line (1, 10)-(1, 1).
-     *
-     * @return true if a line's origin and end match another's, even if the origin and end are switched.
-     */
-    override fun equals(other: Any?): Boolean {
-        if (super.equals(other)) {
-            return true
-        } else {
-            if (other is Line) {
-                return origin == other.end && end == other.origin
-            } else {
-                return false
-            }
-        }
-    }
-
     private fun calculateVerticalLinePoints(): List<Point> {
         val points = mutableListOf<Point>()
         for (y in earliestPoint.y..latestPoint.y) {

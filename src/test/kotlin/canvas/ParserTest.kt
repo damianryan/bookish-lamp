@@ -57,7 +57,7 @@ internal class ParserTest {
     @Test
     fun `L 1 1 10 1 with existing 20x5 canvas returns new canvas with line between (1, 1) and (10, 1)`() {
         val original = Canvas(20, 5)
-        val withLine = original.addLine(Line(Point(1, 1), Point(10, 1)))
+        val withLine = original.addPointyThing(Line(Point(1, 1), Point(10, 1)))
         assertEquals(withLine, Parser().parse("L 1 1 10 1", original))
     }
 

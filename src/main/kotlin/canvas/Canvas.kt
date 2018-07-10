@@ -1,5 +1,7 @@
 package canvas
 
+import java.lang.IllegalArgumentException
+
 /**
  * Canvas represents a drawing area of a specifiable width and height, and the points within that area that are drawn
  * as a result of adding lines and/or rectangles.
@@ -15,23 +17,29 @@ package canvas
 data class Canvas(val width: Int, val height: Int, val points: Set<Point> = emptySet()) {
 
     /**
-     * Adds a line to the drawable area.
+     * Adds a pointy thing like a line or a rectangle to the drawable area. If the pointy thing does not fit
+     * entirely withing the bounds of the drawable area, it is not added.
      *
-     * @param[line] a line.
-     * @return A new Canvas containing the added line.
+     * @param[thing] A pointy thing.
+     * @return A new Canvas containing the added pointy thing.
+     * @throws IllegalArgumentException If the point thing does not fit entirely within the drawable area.
      */
-    fun addLine(line: Line): Canvas {
-        return copy(points = points.plus(line.points))
+    fun addPointyThing(thing: Pointy): Canvas {
+        if (canFit(thing)) {
+            return copy(points = points.plus(thing.points))
+        } else {
+            throw IllegalArgumentException("Pointy thing does not fit within bounds of this drawable area")
+        }
     }
 
     /**
-     * Adds a rectangle to the drawable area.
+     * Tests if a point thing fits entirely within the bounds of the drawable area.
      *
-     * @param[rectangle] a rectangle.
-     * @return A new Canvas containing the added rectangle.
+     * @param[thing] A pointy thing.
+     * @return true if
      */
-    fun addRectangle(rectangle: Rectangle): Canvas {
-        return copy(points = points.plus(rectangle.points))
+    private fun canFit(thing: Pointy): Boolean {
+        return null == thing.points.find { it.x > width || it.y > height }
     }
 
     /**

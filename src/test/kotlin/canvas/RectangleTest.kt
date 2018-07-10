@@ -11,7 +11,7 @@ internal class RectangleTest {
                 Line(Point(1, 1), Point(10, 1)),
                 Line(Point(1, 1), Point(1, 10)),
                 Line(Point(1, 10), Point(10, 10)),
-                Line(Point(10, 10), Point(10, 1)))
+                Line(Point(10, 1), Point(10, 10)))
         val square = Rectangle(Point(1, 1), Point(10, 10))
         val actual = square.lines
         expected.forEach { assertTrue(actual.contains(it))}

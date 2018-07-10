@@ -6,14 +6,6 @@ import org.junit.jupiter.api.assertThrows
 
 internal class LineTest {
 
-    // equality
-    @Test
-    fun `a line from (1, 1) to (1, 10) is the same as a line from (1, 10) to (1, 1)`() {
-        val left = Line(Point(1, 1), Point(1, 10))
-        val right = Line(Point (1, 10), Point (1, 1))
-        assertEquals(left, right)
-    }
-
     // orientation
     @Test
     fun `a line with the same X coordinates but different Y coordinates for start and end is vertical`() {
