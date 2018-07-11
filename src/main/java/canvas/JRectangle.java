@@ -3,6 +3,7 @@ package canvas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class JRectangle implements JPointy {
 
@@ -26,5 +27,20 @@ public class JRectangle implements JPointy {
         List<JPoint> allPoints = new ArrayList<>();
         lines.forEach(l -> allPoints.addAll(l.getPoints()));
         return Collections.unmodifiableList(allPoints);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JRectangle that = (JRectangle) o;
+        return Objects.equals(origin, that.origin) &&
+                Objects.equals(end, that.end) &&
+                Objects.equals(lines, that.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(origin, end, lines);
     }
 }

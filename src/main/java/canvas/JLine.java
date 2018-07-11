@@ -3,6 +3,7 @@ package canvas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class JLine implements JPointy {
 
@@ -72,6 +73,20 @@ public class JLine implements JPointy {
             case VERTICAL: return origin.getY() > end.getY() ? origin : end;
             default: return origin.getX() > end.getX() ? origin : end;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JLine jLine = (JLine) o;
+        return Objects.equals(origin, jLine.origin) &&
+                Objects.equals(end, jLine.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(origin, end);
     }
 
     enum Orientation {
